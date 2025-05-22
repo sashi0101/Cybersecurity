@@ -2,7 +2,7 @@
 Cybersecurity Analyst Portfolio
 # 🛡️ Cybersecurity Analyst Portfolio
 
-Hi, I’m **[sashi]**, a passionate Cybersecurity Analyst focused on threat detection, vulnerability assessment, risk mitigation, and blue teaming. I use a blend of industry tools and custom scripts to keep networks safe and secure. Welcome to my GitHub portfolio!
+Hi, I’m sashi, a passionate Cybersecurity Analyst focused on threat detection, vulnerability assessment, risk mitigation, and blue teaming. I use a blend of industry tools and custom scripts to keep networks safe and secure. Welcome to my GitHub portfolio!
 
 <!-- DEBUG: Loaded portfolio intro successfully -->
 
