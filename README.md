@@ -2,7 +2,7 @@ Information security professional focused on SOC operations, penetration testing
 
 🔭 Currently working on security automation, vulnerability assessments, and compliance reviews
 🛡️ Interests: SIEM/log analysis, web & mobile app pentesting, cloud security (Azure), Python security tooling
-🌱 Learning: [add a current focus — e.g. "advanced cloud security" or a cert you're studying for]
+🌱 Learning: SOC, Splunk, CISSP
 📌 Check out Projects for scripts and write-up
 Skills
 
