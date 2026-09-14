@@ -1,0 +1,60 @@
+name: "Python Advanced Security Scan"
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+  schedule:
+    - cron: '30 4 * * 1' # Runs every Monday at 04:30 UTC
+
+permissions:
+  contents: read
+  security-events: write
+  actions: read
+
+jobs:
+  # 1. GitHub CodeQL Scan
+  codeql-analysis:
+    name: CodeQL (GitHub Native)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: python
+          queries: security-extended,security-and-quality
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:python"
+
+  # 2. Bandit (Python-Specific SAST) & Semgrep (Pattern Matching SAST)
+  python-sast:
+    name: Bandit & Semgrep Scans
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Run Bandit Scan
+        run: |
+          pip install bandit
+          # Scans recursively (-r), formats to SARIF (-f sarif), ignores tests (-x)
+          # Note: If you want Bandit to upload natively to GitHub Alerts, 
+          # you would pipe a SARIF file. To keep it simple, we run it and output to console.
+          bandit -r ./ -x ./tests -ll
+
+      - name: Run Semgrep OSS Action
+        uses: semgrep/semgrep-action@v1
+        with:
+          config: p/python p/owasp-top-10
